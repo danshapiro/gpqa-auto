@@ -1,0 +1,37 @@
+{
+  "GPT-5": {
+    "as_of": "2025-11-20",
+    "model": "GPT-5",
+    "provider": "OpenAI",
+    "score": 85.6,
+    "source": "seed"
+  },
+  "GPT-5.1": {
+    "as_of": "2025-11-20",
+    "model": "GPT-5.1",
+    "provider": "OpenAI",
+    "score": 88.1,
+    "source": "seed"
+  },
+  "Gemini 2.5 Pro": {
+    "as_of": "2025-11-20",
+    "model": "Gemini 2.5 Pro",
+    "provider": "Google",
+    "score": 86.4,
+    "source": "seed"
+  },
+  "Gemini 3.0": {
+    "as_of": "2025-11-20",
+    "model": "Gemini 3.0",
+    "provider": "Google",
+    "score": 91.9,
+    "source": "seed"
+  },
+  "Grok 4": {
+    "as_of": "2025-11-20",
+    "model": "Grok 4",
+    "provider": "xAI",
+    "score": 88.1,
+    "source": "seed"
+  }
+}
