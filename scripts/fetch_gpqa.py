@@ -58,6 +58,14 @@ PROVIDER_BY_MODEL = {
     "Grok 4": "xAI",
 }
 
+DEFAULT_SEED = {
+    "Gemini 3.0": 91.9,
+    "GPT-5.1": 88.1,
+    "Grok 4": 88.1,
+    "Gemini 2.5 Pro": 86.4,
+    "GPT-5": 85.6,
+}
+
 MAX_DELTA = 5.0  # percentage points tolerance
 
 
@@ -117,6 +125,19 @@ def main() -> None:
             combined = _merge(combined, found, src.name, today)
         except Exception as exc:  # pragma: no cover - best effort logging
             print(f"[warn] {src.name}: {exc}")
+
+    if not combined:
+        combined = {
+            name: {
+                "model": name,
+                "provider": PROVIDER_BY_MODEL.get(name, "Unknown"),
+                "score": score,
+                "as_of": today,
+                "source": "seed",
+            }
+            for name, score in DEFAULT_SEED.items()
+        }
+        print("[info] populated with seed scores (first run fallback)")
 
     if combined != existing:
         DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
