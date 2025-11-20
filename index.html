@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPQA Frontier Tracker</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: radial-gradient(circle at 20% 20%, #f3f7ff, #e6ecf5 45%, #dfe7f2 70%);
+      color: #0f172a;
+      margin: 0;
+      padding: 0;
+    }
+    .wrap {
+      max-width: 880px;
+      margin: 24px auto 64px;
+      padding: 0 18px;
+    }
+    header h1 { margin: 0 0 6px; font-weight: 700; letter-spacing: -0.4px; }
+    header p { margin: 0 0 12px; color: #334155; }
+    .pill {
+      display: inline-block;
+      padding: 6px 10px;
+      background: #0b70ff;
+      color: white;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 0.3px;
+    }
+    .card {
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.12);
+      padding: 14px 14px 6px;
+      margin-top: 12px;
+    }
+    img {
+      width: 100%;
+      max-width: 820px;
+      display: block;
+      margin: 0 auto;
+      border-radius: 12px;
+    }
+    footer {
+      margin-top: 16px;
+      color: #475569;
+      font-size: 14px;
+    }
+    a { color: #0b70ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="pill">Auto-refreshed ~12h</div>
+      <h1>GPQA Frontier Model Scores</h1>
+      <p>Latest GPQA Diamond benchmark snapshot for frontier LLMs. Data comes from public benchmark posts and is refreshed automatically.</p>
+    </header>
+
+    <div class="card">
+      <img src="gpqa_frontier.png" alt="GPQA frontier chart">
+    </div>
+
+    <footer>
+      <p>Source code and data live in this repo. Corrections? Open an issue or PR.</p>
+    </footer>
+  </div>
+</body>
+</html>

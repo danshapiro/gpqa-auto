@@ -1,0 +1,64 @@
+name: refresh-gpqa
+
+on:
+  schedule:
+    - cron: "17 */12 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: gpqa-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install -r requirements.txt
+
+      - name: Fetch scores
+        run: python scripts/fetch_gpqa.py
+
+      - name: Render chart
+        run: python scripts/make_chart.py
+
+      - name: Commit updated artifacts
+        run: |
+          git config user.name "gpqa-bot"
+          git config user.email "gpqa-bot@example.com"
+          git add data/gpqa_scores.json img/gpqa_frontier.png
+          git commit -m "chore: refresh GPQA chart" || echo "no changes"
+          git push
+
+      - name: Prepare site artifact
+        run: |
+          mkdir -p site
+          cp index.html site/
+          cp img/gpqa_frontier.png site/
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: refresh
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
